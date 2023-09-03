@@ -1,0 +1,60 @@
+<div class="container mt-4">
+    <div class="card">
+        <h3 class="mt-4" style="text-align: center;">Student Registation</h3>
+        <form>
+            <div class="mb-3 form-check">
+                <!-- name attribute important for 2 way binding/ngModel -->
+                <label for="student_name" class="form-label">Student Name</label>
+                <input type="text" class="form-control" id="student_name" name="student_name" placeholder="Enter Name"
+                    style="width: 80vw;" [(ngModel)]="student_name" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="mb-3 form-check">
+                <label for="student_address" class="form-label">Student Address</label>
+                <input type="text" class="form-control" id="student_address" name="student_address"
+                    placeholder="Enter Address" style="width: 80vw;" [(ngModel)]="student_address"
+                    [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="mb-3 form-check">
+                <label for="student_mobile" class="form-label">Student Mobile</label>
+                <input type="tel" class="form-control" id="student_mobile" name="student_mobile"
+                    placeholder="Enter Mobile" style="width: 80vw;" [(ngModel)]="student_mobile"
+                    [ngModelOptions]="{standalone: true}">
+                <div id="mobileHelp" class="form-text">We'll never share your mobile number with anyone else.</div>
+            </div>
+            <button type="submit" class="btn btn-primary mb-4" style="margin-left: 25px;"
+                (click)="save()">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <div class="container mt-4">
+        <h3 class="mt-4 mb-4" style="text-align: center;">Students Records</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Option</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of StudentsArray">
+                    <!-- entity data members -->
+                    <td>{{student.name}}</td>
+                    <td>{{student.address | lowercase}}</td>
+                    <td>{{student.mobile }}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning" (click)="setUpdate(student)">
+                            <img src="../../assets/edit-text.png" alt="Edit" style="height: 20px;">
+                        </button>
+                        <button type="button" class="btn btn-danger" (click)="setDelete(student)">
+                            <img src="../../assets/delete.png" alt="Edit" style="height: 20px;">
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
